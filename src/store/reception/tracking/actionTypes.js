@@ -1,0 +1,3 @@
+export const TRACKING = "TRACKING"
+export const SET_TRACKING = "SET_TRACKING"
+export const TRACKING_API_ERROR = "TRACKING_API_ERROR"
