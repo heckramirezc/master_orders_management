@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import MetaTags from 'react-meta-tags';
-import Tracking from "./Tracking/index"
+import Tracking from "./Home/index"
 
 import {
   Container,
@@ -12,7 +12,7 @@ class Dashboard extends Component {
       <React.Fragment>
         <div className="page-content">
           <MetaTags>
-          <title>Tracking de Taller | GRUPO MASTER</title>
+          <title>Pedidos | GRUPO MASTER</title>
           </MetaTags>
           <Container fluid>
             <Tracking />

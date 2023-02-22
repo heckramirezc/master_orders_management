@@ -5,16 +5,10 @@ import { Login } from "../../../helpers/backend_helper"
 
 function* loginUser({ payload: { user, history } }) {
   try {
-    const response = yield call(Login, {
-      code: user.code,
-      client: {
-        nit: user.nit,
-      }
-    })
+    const response = yield call(Login, user)
     if (response.code && response.code == 1 && response.user){
-      localStorage.setItem("reception", user.code)
       localStorage.setItem("authUser", JSON.stringify(response.user))
-    yield put(loginSuccess(response.user))
+      yield put(loginSuccess(response.user))
       history.push("/")
     } else if (response.message){
       yield put(apiError(response.message))

@@ -5,6 +5,7 @@ import { connect } from "react-redux"
 import { authProtectedRoutes, publicRoutes } from "./routes"
 import Authmiddleware from "./routes/route"
 import HorizontalLayout from "./components/HorizontalLayout/"
+import VerticalLayout from "./components/VerticalLayout/"
 import NonAuthLayout from "./components/NonAuthLayout"
 
 import "./assets/scss/theme.scss"
@@ -17,7 +18,8 @@ const App = () => {
           {publicRoutes.map((route, idx) => (
             <Authmiddleware
               path={route.path}
-              layout={NonAuthLayout}
+              // layout={NonAuthLayout}
+              layout={VerticalLayout}
               component={route.component}
               key={idx}
               isAuthProtected={false}
@@ -28,7 +30,7 @@ const App = () => {
           {authProtectedRoutes.map((route, idx) => (
             <Authmiddleware
               path={route.path}
-              layout={HorizontalLayout}
+              layout={VerticalLayout}
               component={route.component}
               key={idx}
               isAuthProtected={true}

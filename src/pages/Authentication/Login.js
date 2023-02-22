@@ -19,12 +19,12 @@ const Login = props => {
     enableReinitialize: true,
 
     initialValues: {
-      code: '',
-      nit: '',
+      username: '',
+      password: '',
     },
     validationSchema: Yup.object({
-      code: Yup.string().required("Por favor ingresa el código de la recepción que deseas consultar"),
-      nit: Yup.string().required("Por favor ingresa el NIT asociado a la recepción"),
+      username: Yup.string().required("Por favor ingresa tu NIT"),
+      password: Yup.string().required("Por favor ingresa tu contraseña"),
     }),
     onSubmit: (values) => {
       dispatch(loginUser(values, props.history));
@@ -43,7 +43,7 @@ const Login = props => {
     <React.Fragment>
       <div>
         <MetaTags>
-          <title>Tracking de Taller | GRUPO MASTER</title>
+          <title>Pedidos | GRUPO MASTER</title>
         </MetaTags>
         <Container fluid className="p-0">
           <Row className="g-0">
@@ -71,9 +71,9 @@ const Login = props => {
                     </div>
                     <div className="my-auto">
                       <div>
-                        <h5 className="text-primary">Tracking de Taller</h5>
+                        <h5 className="text-primary">Inicio de sesión</h5>
                         <p className="text-muted">
-                          Introduce el código de la recepción y el NIT correspondiente para validar el seguimiento de la misma.
+                          Introduce tu NIT y la contraseña respectiva.
                         </p>
                       </div>
 
@@ -87,39 +87,39 @@ const Login = props => {
                         >
                           {error ? <Alert color="danger">{error}</Alert> : null}
                           <div className="mb-3">
-                            <Label className="form-label">Código de recepción</Label>
+                            <Label className="form-label">NIT</Label>
                             <Input
-                              name="code"
+                              name="username"
                               className="form-control"
-                              placeholder="Ingresa el código de tu recepción"
+                              placeholder="Ingresa tu NIT"
                               type="text"
                               onChange={validation.handleChange}
                               onBlur={validation.handleBlur}
-                              value={validation.values.code || ""}
+                              value={validation.values.username || ""}
                               invalid={
-                                validation.touched.code && validation.errors.code ? true : false
+                                validation.touched.username && validation.errors.username ? true : false
                               }
                             />
-                            {validation.touched.code && validation.errors.code ? (
-                              <FormFeedback type="invalid">{validation.errors.code}</FormFeedback>
+                            {validation.touched.username && validation.errors.username ? (
+                              <FormFeedback type="invalid">{validation.errors.username}</FormFeedback>
                             ) : null}
                           </div>
 
                           <div className="mb-3">
-                            <Label className="form-label">NIT</Label>
+                            <Label className="form-label">Contraseña</Label>
                             <Input
-                              name="nit"
-                              value={validation.values.nit || ""}
-                              type="text"
-                              placeholder="Ingresa tu NIT"
+                              name="password"
+                              value={validation.values.password || ""}
+                              type="password"
+                              placeholder="Ingresa tu contraseña"
                               onChange={validation.handleChange}
                               onBlur={validation.handleBlur}
                               invalid={
-                                validation.touched.nit && validation.errors.nit ? true : false
+                                validation.touched.password && validation.errors.password ? true : false
                               }
                             />
-                            {validation.touched.nit && validation.errors.nit ? (
-                              <FormFeedback type="invalid">{validation.errors.nit}</FormFeedback>
+                            {validation.touched.password && validation.errors.password ? (
+                              <FormFeedback type="invalid">{validation.errors.password}</FormFeedback>
                             ) : null}
                           </div>
                           <div className="mt-3 d-grid">
@@ -128,7 +128,7 @@ const Login = props => {
                                 className="btn btn-primary btn-block "
                                 type="submit"
                               >
-                                Verificar
+                                Ingresar
                               </button>
                             : 
                               <button
@@ -136,7 +136,7 @@ const Login = props => {
                                 className="btn btn-primary "
                               >
                                 <i className="bx bx-loader bx-spin font-size-16 align-middle me-2"></i>{" "}
-                                Verificar
+                                Ingresar
                               </button>
                             }
                           </div>

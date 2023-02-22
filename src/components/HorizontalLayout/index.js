@@ -28,7 +28,7 @@ const Layout = (props) => {
     let currentage = title.charAt(1).toUpperCase() + title.slice(2)
 
     document.title =
-      currentage + " | Tracking de Taller | GRUPO MASTER"
+      currentage + " | Pedidos | GRUPO MASTER"
   }, [props.location.pathname]);
 
   useEffect(() => {

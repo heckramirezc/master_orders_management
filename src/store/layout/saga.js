@@ -56,7 +56,7 @@ function* changeLayout({ payload: layout }) {
       document.body.removeAttribute("data-sidebar-image")
       document.body.removeAttribute("data-sidebar-size")
     } else {
-      yield put(changeTopbarThemeAction("light"))
+      yield put(changeTopbarThemeAction("dark"))
     }
     yield call(changeBodyAttribute, "data-layout", layout)
   } catch (error) {}

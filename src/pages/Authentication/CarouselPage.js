@@ -1,8 +1,31 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Col } from "reactstrap"
 import Slider from "react-slick";
+import { useSelector, useDispatch } from "react-redux";
+import { getOffers } from "../../store/actions";
 
 const CarouselPage = () => {
+  const dispatch = useDispatch();
+
+  const [offers, setOffers] = useState([]);
+
+  useEffect(() => {
+    dispatch(getOffers({type: 2}));
+  }, [])
+
+  const { loading } = useSelector(state => ({
+    loading: state.Home.loading,
+  }));
+
+  const { offersResponse } = useSelector(state => ({
+    offersResponse: state?.Home?.offers,
+  }));
+  
+  useEffect(() => {
+    if(offersResponse && offersResponse.length && offersResponse.length > 0) {
+      setOffers(offersResponse)
+    }
+  }, [offersResponse]);
 
   const bannerSettings = {
     dots: false,
@@ -25,21 +48,13 @@ const CarouselPage = () => {
           <div className="w-100">
             <div className="banner">
               <Slider {...bannerSettings}>
-                <div className="slider-container">
-                  <picture>
-                    <img src="https://grupomaster.com.gt/wp-content/uploads/2019/06/Whatsapp-2560x1324-1.jpg" alt="" />
-                  </picture>
-                </div>
-                <div className="slider-container">
-                  <picture>
-                    <img src="https://grupomaster.com.gt/wp-content/uploads/2019/06/Banner-Web-2560x1324-1.jpg" alt="" />
-                  </picture>
-                </div>
-                <div className="slider-container">
-                  <picture>
-                    <img src="https://grupomaster.com.gt/wp-content/uploads/2019/06/Enactus-2560x1324-1.jpg" alt="" />
-                  </picture>
-                </div>
+                {offers.map((offer, key) => (
+                  <div className="slider-container" key={key}>
+                    <picture>
+                      <img src={offer?.image?.url} alt="" />
+                    </picture>
+                  </div>
+                ))}
               </Slider>
             </div>
           </div>
